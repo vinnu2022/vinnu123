@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="27fd767c-eb5f-4424-94d6-be803a98ae33" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="githubFlow" doc:id="d6237a98-1774-4ac6-9122-5dd6a21e6cfa" >
+		<http:listener doc:name="Listener" doc:id="f533d8f9-1f49-4067-b471-cb59bf00bd07" config-ref="HTTP_Listener_config" path="/api"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f6ab4cdf-e24b-4759-9890-9a897c6dbb56" message="#['flow started']"/>
+		<set-payload value='#["this application deployed through github actions"]' doc:name="Set Payload" doc:id="5b7711e3-6cea-4b4b-9aec-a96230531df6" />
+		<logger level="INFO" doc:name="Logger" doc:id="17ca06fa-2d8e-4825-a4e7-3d91f03da8a9" message="#['flow ended']"/>
+	</flow>
+</mule>
